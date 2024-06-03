@@ -1,0 +1,37 @@
+import math
+
+
+def dot_product(a, b):
+    return sum(x * y for x, y in zip(a, b))
+
+
+def magnitude(vector):
+    return math.sqrt(sum(x ** 2 for x in vector))
+
+
+def angle_between_vectors(a, b):
+    # Compute the dot product
+    dot_prod = dot_product(a, b)
+
+    # Compute the magnitudes of the vectors
+    magnitude_a = magnitude(a)
+    magnitude_b = magnitude(b)
+
+    # Compute the cosine of the angle
+    cos_theta = dot_prod / (magnitude_a * magnitude_b)
+
+    # Ensure the value is within the valid range for arccos
+    cos_theta = max(min(cos_theta, 1.0), -1.0)
+
+    # Compute the angle in radians
+    angle_radians = math.acos(cos_theta)
+
+    return angle_radians
+
+
+# Example usage
+vector_a = [1, 2, 3]
+vector_b = [4, -5, 6]
+
+angle = angle_between_vectors(vector_a, vector_b)
+print(f"The angle between the vectors in radians is: {angle}")
